@@ -36,7 +36,7 @@ function Dashboard() {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/items', getHeaders());
+      const res = await axios.get('https://lostandfound-280.onrender.com/api/items', getHeaders());
       setItems(res.data);
     } catch (err) {
       if (err.response?.status === 401) {
@@ -50,7 +50,7 @@ function Dashboard() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(`http://localhost:5000/api/items/search?name=${searchQuery}&type=${searchType}`, getHeaders());
+      const res = await axios.get(`https://lostandfound-280.onrender.com/api/items/search?name=${searchQuery}&type=${searchType}`, getHeaders());
       setItems(res.data);
     } catch (err) {
       setError('Search failed');
@@ -76,10 +76,10 @@ function Dashboard() {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/items/${editId}`, formData, getHeaders());
+        await axios.put(`https://lostandfound-280.onrender.com/api/items/${editId}`, formData, getHeaders());
         setMessage('Item updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/items', formData, getHeaders());
+        await axios.post('https://lostandfound-280.onrender.com/api/items', formData, getHeaders());
         setMessage('Item added successfully');
       }
       setFormData({ itemName: '', description: '', type: 'Lost', location: '', date: '', contactInfo: '' });
@@ -108,7 +108,7 @@ function Dashboard() {
   const handleDeleteClick = async (id) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/items/${id}`, getHeaders());
+      await axios.delete(`https://lostandfound-280.onrender.com/api/items/${id}`, getHeaders());
       setMessage('Item deleted successfully');
       fetchItems();
     } catch (err) {
